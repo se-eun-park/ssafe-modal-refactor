@@ -9,8 +9,15 @@ const LoginModal = ({ setModalOpen }: { setModalOpen: React.Dispatch<SetStateAct
     checkNickName();
   },[nickName])
   const handleNextBtn=()=>{
-    setModalOpen((prev)=>!prev);
-    navigate('/myspace')
+    
+    if(nickNameError){
+      setModalOpen((prev)=>!prev);
+      navigate('/myspace',{state:{nickName:nickName}});
+    }
+    else{
+      alert("닉네임이 이상해요");
+    }
+    
   }
   const checkNickName=()=>{
     if(nickName.length<4){
@@ -20,6 +27,7 @@ const LoginModal = ({ setModalOpen }: { setModalOpen: React.Dispatch<SetStateAct
       setNickNameError(true);
     }
   }
+  
   return (
     <div className="relative w-[48rem] h-[23rem] rounded-md border-solid border-2 border-black-500 flex flex-col">
       <h1 className='text-[2rem] ps-[3.2rem] pt-[3.2rem] font-bold'>닉네임을 입력하세요</h1>
