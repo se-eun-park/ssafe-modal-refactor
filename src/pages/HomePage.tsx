@@ -13,7 +13,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <Header headText={'폼나는 사패'} nickName={''} />
+      <Header headText={'폼나는 싸패'} nickName={''} />
       <div className="flex h-screen items-center justify-center">
         <div className="h-[45rem] text-center">
           <p className="mb-[1.6rem] text-[1.6rem] font-bold text-[#4B5563]">데이터 수집을 위한 올인원 툴</p>
