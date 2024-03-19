@@ -4,7 +4,7 @@ import Header from '@components/Header';
 
 const HomePage = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [modalType, setModalType] = useState<string>('login');
+  const [modalType, setModalType] = useState<string>('survey');
 
   const showModal = (type: string) => {
     setModalType(type);
