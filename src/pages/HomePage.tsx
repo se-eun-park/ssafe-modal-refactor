@@ -4,8 +4,10 @@ import Header from '@components/Header';
 
 const HomePage = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [modalType, setModalType] = useState<string>('login');
 
-  const showModal = () => {
+  const showModal = (type: string) => {
+    setModalType(type);
     setModalOpen(true);
   };
 
@@ -26,13 +28,13 @@ const HomePage = () => {
             모든 핵심 과정을 왈라에서 한번에 해결하실 수 있습니다.
           </p>
           <button
-            onClick={showModal}
+            onClick={() => showModal(modalType)}
             className="mt-[9.7rem] h-[6.4rem] w-[32rem] rounded-[3.2rem] bg-[#6ED1F9] text-[2.4rem] font-bold text-white"
           >
             로그인
           </button>
         </div>
-        {modalOpen && <Modal setModalOpen={setModalOpen} />}
+        {modalOpen && <Modal modalType={modalType} setModalOpen={setModalOpen} />}
       </div>
     </div>
   );
