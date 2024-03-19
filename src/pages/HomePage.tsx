@@ -4,7 +4,7 @@ import Header from '@components/Header';
 
 const HomePage = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [modalType, setModalType] = useState<string>('survey');
+  const [modalType, setModalType] = useState<string>('login');
 
   // 추가한 부분 아래 모달부분도 변경되어있음
   const [formData, setFormData] = useState<any>(null);
