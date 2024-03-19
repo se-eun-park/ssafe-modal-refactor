@@ -7,7 +7,7 @@ const MyspacePage = () => {
   const nickName = location.state ? location.state.nickName : '';
   return (
     <div>
-      <Header headText={`마이스페이스  🧑‍💻${nickName}`} />
+      <Header headText={'마이스페이스 💌'} nickName={`${nickName[0]}`} />
       <h1>MyspacePage</h1>
     </div>
   );

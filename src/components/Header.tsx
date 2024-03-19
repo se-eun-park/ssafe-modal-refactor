@@ -1,10 +1,11 @@
 import React from 'react';
 
-const Header = ({ headText }: { headText: string }) => {
+const Header = ({ headText, nickName }: { headText: string; nickName: string }) => {
   return (
     <header>
-      <div className=" bg-white px-[3.2rem] py-[2.25rem] font-inter text-[1.6rem] font-bold text-[#525252]">
-        {headText}
+      <div className="fixed z-10 w-full bg-white px-[3.2rem] py-[2.25rem] text-[1.6rem] font-bold text-[#525252]">
+        <span>{headText}</span>
+        <span>{nickName}</span>
       </div>
     </header>
   );
