@@ -5,14 +5,16 @@ import SurveyTag from '@components/SurveyTag';
 const Modal = ({
   modalType,
   setModalOpen,
+  receiveFormData,
 }: {
   modalType: string;
   setModalOpen: React.Dispatch<SetStateAction<boolean>>;
+  receiveFormData: any;
 }) => {
   return (
     <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
       {modalType === 'login' && <LoginModal setModalOpen={setModalOpen} />}
-      {modalType === 'survey' && <SurveyModal setModalOpen={setModalOpen} />}
+      {modalType === 'survey' && <SurveyModal setModalOpen={setModalOpen} receiveFormData={receiveFormData} />}
     </div>
   );
 };
@@ -64,7 +66,13 @@ const LoginModal = ({ setModalOpen }: { setModalOpen: React.Dispatch<SetStateAct
   );
 };
 
-const SurveyModal = ({ setModalOpen }: { setModalOpen: React.Dispatch<SetStateAction<boolean>> }) => {
+const SurveyModal = ({
+  setModalOpen,
+  receiveFormData,
+}: {
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  receiveFormData: (data: any) => void;
+}) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [tag, setTag] = useState('');
@@ -76,6 +84,12 @@ const SurveyModal = ({ setModalOpen }: { setModalOpen: React.Dispatch<SetStateAc
     const newTagList = [...tagList, tag];
     setTagList(newTagList);
     setTag('');
+  };
+
+  const handleOkBtn = () => {
+    const formData = { title, content, tagList };
+    receiveFormData(formData);
+    setModalOpen(false);
   };
   return (
     <div className="relative w-[67.2rem] h-[52.5rem] rounded-md border-solid border-2 border-black-500 flex flex-col bg-white">
@@ -107,8 +121,8 @@ const SurveyModal = ({ setModalOpen }: { setModalOpen: React.Dispatch<SetStateAc
           placeholder="내용을 입력하세요"
         ></textarea>
         <div className="w-[57.6rem] h-[3.2rem] flex flex-row mx-auto mt-[3.2rem] justify-start">
-          {tagList.map((tag) => (
-            <SurveyTag tagText={tag}></SurveyTag>
+          {tagList.map((tag, index) => (
+            <SurveyTag tagText={tag} idx={index}></SurveyTag>
           ))}
           <input
             className={`w-[10rem] h-[3.2rem] bg-[#D4D4D4] grid place-items-center text-white rounded-md text-[1.2rem] font-bold text-center ${tagList.length > 4 ? 'hidden' : ''}`}
@@ -122,7 +136,10 @@ const SurveyModal = ({ setModalOpen }: { setModalOpen: React.Dispatch<SetStateAc
           />
         </div>
       </div>
-      <button className="absolute bottom-10 right-12 w-[4rem] h-[3rem] mt-[3.2rem] rounded-md text-[1.4rem] font-bold border-solid border-2 border-black-600/100">
+      <button
+        className="absolute bottom-10 right-12 w-[4rem] h-[3rem] mt-[3.2rem] rounded-md text-[1.4rem] font-bold border-solid border-2 border-black-600/100"
+        onClick={handleOkBtn}
+      >
         확인
       </button>
     </div>
