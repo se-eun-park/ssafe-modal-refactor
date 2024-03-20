@@ -3,10 +3,7 @@
 @tailwind utilities;
 
 * {
-  font-family:
-    'Inter',
-    Trebuchet MS,
-    sans-serif !important;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 html {

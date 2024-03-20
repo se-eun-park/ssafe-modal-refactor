@@ -2,23 +2,24 @@ import React, { SetStateAction, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SurveyTag from '@components/SurveyTag';
 
-type form={title:string,content:string,tagList:string[]}
+type form = { title: string; content: string; tagList: string[] };
 const Modal = ({
   modalType,
   setModalOpen,
   formData,
   receiveFormData,
 }: {
-  
   modalType: string;
-    setModalOpen: React.Dispatch<SetStateAction<boolean>>;
-    formData: form;
-    receiveFormData:  (data: form) =>void;
-  }) => {
+  setModalOpen: React.Dispatch<SetStateAction<boolean>>;
+  formData: form;
+  receiveFormData: (data: form) => void;
+}) => {
   return (
     <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
       {modalType === 'login' && <LoginModal setModalOpen={setModalOpen} />}
-      {modalType === 'survey' && <SurveyModal setModalOpen={setModalOpen} formData={formData} receiveFormData={receiveFormData} />}
+      {modalType === 'survey' && (
+        <SurveyModal setModalOpen={setModalOpen} formData={formData} receiveFormData={receiveFormData} />
+      )}
     </div>
   );
 };
@@ -75,8 +76,8 @@ const SurveyModal = ({
   formData,
   receiveFormData,
 }: {
-    setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    formData:form,
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  formData: form;
   receiveFormData: (data: form) => void;
 }) => {
   const [title, setTitle] = useState('');
@@ -103,22 +104,22 @@ const SurveyModal = ({
     setModalOpen(false);
   };
   return (
-    <div className="relative w-[67.2rem] h-[52.5rem] rounded-md border-solid border-2 border-black-500 flex flex-col bg-white">
+    <div className="border-black-500 relative flex h-[52.5rem] w-[67.2rem] flex-col rounded-md border-2 border-solid bg-white">
       <button
-        className="text-[2.5rem] absolute top-10 right-12 font-bold"
+        className="absolute right-12 top-10 text-[2.5rem] font-bold"
         onClick={() => setModalOpen((prev) => !prev)}
       >
         X
       </button>
-      <h1 className="text-[2rem] ps-[4.5rem] pt-[3.2rem] font-bold">새로운 설문지를 작성합니다.</h1>
+      <h1 className="ps-[4.5rem] pt-[3.2rem] text-[2rem] font-bold">새로운 설문지를 작성합니다.</h1>
       <h3 className="ps-[4.5rem] text-[1.4rem] text-gray-600">새로운 설문지를 만들기 위한 설정입니다.</h3>
-      <div className="w-[60.8rem] h-[33.6rem] flex flex-col rounded-md mx-auto mt-[2.4rem] bg-[#FAFAFA] border-solid border-2 border-black-500">
+      <div className="border-black-500 mx-auto mt-[2.4rem] flex h-[33.6rem] w-[60.8rem] flex-col rounded-md border-2 border-solid bg-[#FAFAFA]">
         <label htmlFor="surveyTitle" className="ms-[1.6rem] mt-[1.6rem] text-[1.4rem]">
           설문지 이름을 입력하세요
         </label>
         <input
           id="surveyTitle"
-          className="w-[57.6rem] h-[3.2rem] rounded-md mt-[0.8rem] mx-auto bg-[#F5F5F5] border-solid border-2 border-black-500"
+          className="border-black-500 mx-auto mt-[0.8rem] h-[3.2rem] w-[57.6rem] rounded-md border-2 border-solid bg-[#F5F5F5]"
           onChange={(e) => setTitle(e.target.value)}
           placeholder="제목을 입력하세요"
           value={title}
@@ -128,29 +129,29 @@ const SurveyModal = ({
         </label>
         <textarea
           id="surveyContent"
-          className="w-[57.6rem] h-[9.6rem] rounded-md mt-[0.8rem] mx-auto bg-[#F5F5F5] border-solid border-2 border-black-500"
+          className="border-black-500 mx-auto mt-[0.8rem] h-[9.6rem] w-[57.6rem] rounded-md border-2 border-solid bg-[#F5F5F5]"
           onChange={(e) => setContent(e.target.value)}
           placeholder="내용을 입력하세요"
           value={content}
         ></textarea>
-        <div className="w-[57.6rem] h-[3.2rem] flex flex-row mx-auto mt-[3.2rem] justify-start">
+        <div className="mx-auto mt-[3.2rem] flex h-[3.2rem] w-[57.6rem] flex-row justify-start">
           {tagList.map((tag, index) => (
             <SurveyTag tagText={tag} idx={index}></SurveyTag>
           ))}
           <input
-            className={`w-[10rem] h-[3.2rem] bg-[#D4D4D4] grid place-items-center text-white rounded-md text-[1.2rem] font-bold text-center ${tagList.length > 4 ? 'hidden' : ''}`}
+            className={`grid h-[3.2rem] w-[10rem] place-items-center rounded-md bg-[#D4D4D4] text-center text-[1.2rem] font-bold text-white ${tagList.length > 4 ? 'hidden' : ''}`}
             onChange={(e) => setTag(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === 'Enter') makeTag();
             }}
-            maxLength={10}
+            maxLength={6}
             placeholder="#태그입력"
             value={tag}
           />
         </div>
       </div>
       <button
-        className="absolute bottom-10 right-12 w-[4rem] h-[3rem] mt-[3.2rem] rounded-md text-[1.4rem] font-bold border-solid border-2 border-black-600/100"
+        className="border-black-600/100 absolute bottom-10 right-12 mt-[3.2rem] h-[3rem] w-[4rem] rounded-md border-2 border-solid text-[1.4rem] font-bold"
         onClick={handleOkBtn}
       >
         확인

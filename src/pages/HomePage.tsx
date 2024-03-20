@@ -2,14 +2,13 @@ import { useState } from 'react';
 import Modal from '@components/Modal';
 import Header from '@components/Header';
 
-
 const HomePage = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [modalType, setModalType] = useState<string>('survey');
-  
+  const [modalType, setModalType] = useState<string>('login');
+
   // 추가한 부분 아래 모달부분도 변경되어있음
-  type form={title:string,content:string,tagList:string[]}
-  const [formData, setFormData] = useState<form>({title:'',content:'',tagList:[]});
+  type form = { title: string; content: string; tagList: string[] };
+  const [formData, setFormData] = useState<form>({ title: '', content: '', tagList: [] });
   const receiveFormData = (data: form) => {
     setFormData(data);
     console.log('Received form data:', data);
@@ -23,7 +22,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <Header headText={'폼나는 사패'} nickName={''} />
+      <Header headText={'폼나는 싸패'} nickName={''} />
       <div className="flex h-screen items-center justify-center">
         <div className="h-[45rem] text-center">
           <p className="mb-[1.6rem] text-[1.6rem] font-bold text-[#4B5563]">데이터 수집을 위한 올인원 툴</p>
@@ -44,7 +43,14 @@ const HomePage = () => {
             로그인
           </button>
         </div>
-        {modalOpen && <Modal modalType={modalType} setModalOpen={setModalOpen} formData={formData} receiveFormData={receiveFormData} />}
+        {modalOpen && (
+          <Modal
+            modalType={modalType}
+            setModalOpen={setModalOpen}
+            formData={formData}
+            receiveFormData={receiveFormData}
+          />
+        )}
       </div>
     </div>
   );
