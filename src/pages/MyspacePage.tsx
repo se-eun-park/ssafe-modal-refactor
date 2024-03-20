@@ -1,6 +1,8 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '@components/Header';
+import SearchSVG from '@assets/search.svg?react';
+import ArrowSVG from '@assets/arrow.svg?react';
 
 const MyspacePage = () => {
   const location = useLocation();
@@ -17,6 +19,16 @@ const MyspacePage = () => {
             보관함
           </button>
           <button className="h-[3.6rem] w-[11.6rem] text-[1.4rem] font-bold text-[#A3A3A3] ">참여한 설문</button>
+        </div>
+      </div>
+      <div className="relative top-[9rem] flex px-[3.2rem]">
+        <div className="mr-[1.6rem] flex h-[3.6rem] w-[21.7rem] items-center justify-center rounded-[1.8rem] border border-[#E5E5E5] bg-white">
+          <span className="mr-[3.2rem] text-[1.4rem] font-bold text-[#A3A3A3]">프로젝트를 검색하세요</span>
+          <SearchSVG />
+        </div>
+        <div className="flex h-[3.6rem] w-[17.9rem] items-center justify-center rounded-[1.8rem] border border-[#E5E5E5] bg-white">
+          <span className="mr-[1.6rem] text-[1.4rem] font-bold text-[#A3A3A3]">최근에 수정된 순서</span>
+          <ArrowSVG />
         </div>
       </div>
     </div>
