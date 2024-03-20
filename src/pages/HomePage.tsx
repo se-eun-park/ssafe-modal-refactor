@@ -2,17 +2,20 @@ import { useState } from 'react';
 import Modal from '@components/Modal';
 import Header from '@components/Header';
 
+
 const HomePage = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [modalType, setModalType] = useState<string>('login');
-
+  const [modalType, setModalType] = useState<string>('survey');
+  
   // 추가한 부분 아래 모달부분도 변경되어있음
-  const [formData, setFormData] = useState<any>(null);
-  const receiveFormData = (data: any) => {
+  type form={title:string,content:string,tagList:string[]}
+  const [formData, setFormData] = useState<form>({title:'',content:'',tagList:[]});
+  const receiveFormData = (data: form) => {
     setFormData(data);
     console.log('Received form data:', data);
   };
   //
+
   const showModal = (type: string) => {
     setModalType(type);
     setModalOpen(true);
@@ -41,7 +44,7 @@ const HomePage = () => {
             로그인
           </button>
         </div>
-        {modalOpen && <Modal modalType={modalType} setModalOpen={setModalOpen} receiveFormData={receiveFormData} />}
+        {modalOpen && <Modal modalType={modalType} setModalOpen={setModalOpen} formData={formData} receiveFormData={receiveFormData} />}
       </div>
     </div>
   );
