@@ -144,7 +144,7 @@ const SurveyModal = ({
             onKeyDown={(e) => {
               if (e.key === 'Enter') makeTag();
             }}
-            maxLength={10}
+            maxLength={6}
             placeholder="#태그입력"
             value={tag}
           />

@@ -8,7 +8,7 @@ const Card = ({ title, content, tagList }: { title: string; content: string; tag
 
   return (
     <div>
-      <div className="h-[23rem] w-[35.6rem] rounded-[0.8rem] border-[0.05rem] border-[#D4D4D4] bg-white">
+      <div className="mr-[1.6rem] h-[23rem] w-[35.6rem] rounded-[0.8rem] border-[0.05rem] border-[#D4D4D4] bg-white">
         <div className="flex h-[5rem] w-[35.6rem] items-center justify-between border-b-[0.05rem] border-[#D4D4D4] px-[2rem]">
           <p className=" text-[1.6rem] font-bold text-[#525252]">{title}</p>
           <span className="text-[1.2rem] font-normal text-[#A3A3A3]">작성일: {formattedDate}</span>
