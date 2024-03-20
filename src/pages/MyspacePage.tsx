@@ -9,7 +9,7 @@ const MyspacePage = () => {
     <div className="h-screen w-full bg-[#FAFAFA]">
       <Header headText={'마이스페이스 💌'} nickName={`${nickName[0]}`} />
       <div className="relative top-[5.6rem] h-[8rem] border-b border-[#E5E5E5] bg-white px-[3.2rem]">
-        <button className="mb-[0.78rem] h-[3.6rem] w-[13.2rem] rounded-[0.4rem] bg-black text-[1.4rem] font-bold text-white opacity-20 hover:opacity-100">
+        <button className="mb-[0.78rem] h-[3.6rem] w-[13.2rem] rounded-[0.4rem] bg-[#262626] text-[1.4rem] font-bold text-white opacity-20 hover:opacity-100">
           새 설문 만들기
         </button>
         <div>
