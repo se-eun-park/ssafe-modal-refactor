@@ -2,19 +2,23 @@ import React, { SetStateAction, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SurveyTag from '@components/SurveyTag';
 
+type form={title:string,content:string,tagList:string[]}
 const Modal = ({
   modalType,
   setModalOpen,
+  formData,
   receiveFormData,
 }: {
+  
   modalType: string;
-  setModalOpen: React.Dispatch<SetStateAction<boolean>>;
-  receiveFormData: any;
-}) => {
+    setModalOpen: React.Dispatch<SetStateAction<boolean>>;
+    formData: form;
+    receiveFormData:  (data: form) =>void;
+  }) => {
   return (
     <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
       {modalType === 'login' && <LoginModal setModalOpen={setModalOpen} />}
-      {modalType === 'survey' && <SurveyModal setModalOpen={setModalOpen} receiveFormData={receiveFormData} />}
+      {modalType === 'survey' && <SurveyModal setModalOpen={setModalOpen} formData={formData} receiveFormData={receiveFormData} />}
     </div>
   );
 };
@@ -68,15 +72,22 @@ const LoginModal = ({ setModalOpen }: { setModalOpen: React.Dispatch<SetStateAct
 
 const SurveyModal = ({
   setModalOpen,
+  formData,
   receiveFormData,
 }: {
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  receiveFormData: (data: any) => void;
+    setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    formData:form,
+  receiveFormData: (data: form) => void;
 }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [tag, setTag] = useState('');
   const [tagList, setTagList] = useState<string[]>([]);
+  useEffect(() => {
+    setTitle(formData.title);
+    setContent(formData.content);
+    setTagList(formData.tagList);
+  }, []);
   const makeTag = () => {
     if (tag.trim() === '') {
       return;
@@ -110,6 +121,7 @@ const SurveyModal = ({
           className="w-[57.6rem] h-[3.2rem] rounded-md mt-[0.8rem] mx-auto bg-[#F5F5F5] border-solid border-2 border-black-500"
           onChange={(e) => setTitle(e.target.value)}
           placeholder="제목을 입력하세요"
+          value={title}
         ></input>
         <label htmlFor="surveyContent" className="ms-[1.6rem] mt-[3.2rem] text-[1.4rem]">
           설문지 설명을 입력하세요
@@ -119,6 +131,7 @@ const SurveyModal = ({
           className="w-[57.6rem] h-[9.6rem] rounded-md mt-[0.8rem] mx-auto bg-[#F5F5F5] border-solid border-2 border-black-500"
           onChange={(e) => setContent(e.target.value)}
           placeholder="내용을 입력하세요"
+          value={content}
         ></textarea>
         <div className="w-[57.6rem] h-[3.2rem] flex flex-row mx-auto mt-[3.2rem] justify-start">
           {tagList.map((tag, index) => (
