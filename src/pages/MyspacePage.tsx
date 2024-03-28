@@ -2,8 +2,8 @@
 import Header from '@components/Header';
 // import Modal from '@components/Modal';
 // import Card from '@components/Card';
-import SearchSVG from '@assets/search.svg?react';
-import ArrowSVG from '@assets/arrow.svg?react';
+import SearchSVG from '@assets/svg/search.svg?react';
+import ArrowSVG from '@assets/svg/arrow.svg?react';
 
 const MyspacePage = () => {
   return (
