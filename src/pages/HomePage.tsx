@@ -1,28 +1,11 @@
-import { useState } from 'react';
-import Modal from '@components/Modal';
+// import { useState } from 'react';
+// import Modal from '@components/Modal';
 import Header from '@components/Header';
 
 const HomePage = () => {
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [modalType, setModalType] = useState<string>('login');
-
-  // 추가한 부분 아래 모달부분도 변경되어있음
-  type form = { title: string; content: string; tagList: string[] };
-  const [formData, setFormData] = useState<form>({ title: '', content: '', tagList: [] });
-  const receiveFormData = (data: form) => {
-    setFormData(data);
-    console.log('Received form data:', data);
-  };
-  //
-
-  const showModal = (type: string) => {
-    setModalType(type);
-    setModalOpen(true);
-  };
-
   return (
     <div>
-      <Header headText={'폼나는 싸패'} nickName={''} />
+      <Header headText={'폼나는 싸패'} />
       <div className="flex h-screen items-center justify-center">
         <div className="h-[45rem] text-center">
           <p className="mb-[1.6rem] text-[1.6rem] font-bold text-[#4B5563]">데이터 수집을 위한 올인원 툴</p>
@@ -36,21 +19,10 @@ const HomePage = () => {
             <br />
             모든 핵심 과정을 왈라에서 한번에 해결하실 수 있습니다.
           </p>
-          <button
-            onClick={() => showModal(modalType)}
-            className="mt-[9.7rem] h-[6.4rem] w-[32rem] rounded-[3.2rem] bg-[#6ED1F9] text-[2.4rem] font-bold text-white"
-          >
+          <button className="mt-[9.7rem] h-[6.4rem] w-[32rem] rounded-[3.2rem] bg-[#6ED1F9] text-[2.4rem] font-bold text-white">
             로그인
           </button>
         </div>
-        {modalOpen && (
-          <Modal
-            modalType={modalType}
-            setModalOpen={setModalOpen}
-            formData={formData}
-            receiveFormData={receiveFormData}
-          />
-        )}
       </div>
     </div>
   );
